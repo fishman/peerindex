@@ -19,7 +19,7 @@ module Peerindex
       #     Peerindex.user(7505382)  # Same as above
       def user(user, options={})
         merge_user_into_options!(user, options)
-        response = get('version/profile/show', options)
+        response = get('v2/profile/profile', options)
         format.to_s.downcase == 'xml' ? response['user'] : response
       end
 
@@ -34,7 +34,7 @@ module Peerindex
       # @rate_limited Yes
       def user?(user, options={})
         merge_user_into_options!(user, options)
-        get('version/profile/show', options, :format => :json, :raw => true)
+        get('v2/profile/profile', options, :format => :json, :raw => true)
         true
       rescue Peerindex::NotFound
         false
